@@ -23,7 +23,7 @@ class BinaryHeap(UserList):
 
         @staticmethod
         def parent(i: int) -> int:
-		return -1 if i == 0 else (i-1)//2
+                return -1 if i == 0 else (i-1)//2
 
         @staticmethod
         def left(i: int) -> int:
@@ -41,7 +41,7 @@ class BinaryHeap(UserList):
                 """Return minimum element in the heap."""
                 return self[0]
 
-        def __bubble_up(self):
+        def _bubble_up(self):
                 """Fixup after insertion.
 
                 After an insertion, the last element may violate the min-heap property.
@@ -57,9 +57,9 @@ class BinaryHeap(UserList):
         def insert(self, x):
                 """Insert an element x into the heap."""
                 self.append(x)
-                self.__bubble_up() # fixup
+                self._bubble_up() # fixup
 
-        def __trickle_down(self):
+        def _trickle_down(self):
                 """Fixup after min_extract.
 
                 min_extract places the last element at the beginning of the array.
@@ -88,7 +88,7 @@ class BinaryHeap(UserList):
                 # replace first element with last one
                 self[0] = self[-1]
                 self.pop()
-                self.__trickle_down() # fixup
+                self._trickle_down() # fixup
                 return min_elem
 
         def __repr__(self):

@@ -101,7 +101,7 @@ class BinomialHeap:
                 node = node.parent
 
     @staticmethod
-    def __safe_merge(t1, t2, i):
+    def _safe_merge(t1, t2, i):
         """Safely merge two binomial trees (with None checks)
 
         Returns i+1 if a merge occurs, i otherwise.
@@ -148,23 +148,23 @@ class BinomialHeap:
         min_trees = min(len(self._trees), len(other._trees))
 
         for i in range(min_trees):
-            j, tree = self.__safe_merge(self._trees[i], other._trees[i], i)
+            j, tree = self._safe_merge(self._trees[i], other._trees[i], i)
             # merge with trees[i] if last merge failed.
             # Otherwise will always merge with None,
             #   since trees[i+1] has not yet been filled.
-            k, tree = self.__safe_merge(tree, trees[j], j)
+            k, tree = self._safe_merge(tree, trees[j], j)
             trees[j] = None # if last merge succeeds, removes leftover lower order tree.
             trees[k] = tree
 
         for i in range(min_trees, len(self._trees)):
-            # __safe_merge only matters for trees[len(other._trees)].
-            j, tree = self.__safe_merge(trees[i], self._trees[i], i)
+            # _safe_merge only matters for trees[len(other._trees)].
+            j, tree = self._safe_merge(trees[i], self._trees[i], i)
             trees[i] = None # if merge succeeds, removes leftover lower order tree.
             trees[j] = tree
             i = j
 
         for i in range(min_trees, len(other._trees)):
-            j, tree = self.__safe_merge(trees[i], other._trees[i], i)
+            j, tree = self._safe_merge(trees[i], other._trees[i], i)
             trees[i] = None # if merge succeeds, removes leftover lower order tree.
             trees[j] = tree
 
