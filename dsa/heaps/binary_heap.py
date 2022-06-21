@@ -35,10 +35,12 @@ class BinaryHeap(UserList):
 
         def __init__(self):
                 """Creates an empty heap."""
+
                 super().__init__()
 
         def minimum(self):
                 """Return minimum element in the heap."""
+
                 return self[0]
 
         def _bubble_up(self):
@@ -48,6 +50,7 @@ class BinaryHeap(UserList):
                 This function repeatedly swaps the last element with its parent
                         until its value is >= its parent's value.
                 """
+
                 i = len(self)-1
                 parent_i = self.parent(i)
                 while parent_i >= 0 and self[i] < self[parent_i]:
@@ -56,6 +59,7 @@ class BinaryHeap(UserList):
 
         def insert(self, x):
                 """Insert an element x into the heap."""
+
                 self.append(x)
                 self._bubble_up() # fixup
 
@@ -69,6 +73,7 @@ class BinaryHeap(UserList):
                         smallest of its children until the min-heap property is restored, i.e.
                         until the element is smaller than both of its children.
                 """
+
                 i = 0
                 l, r = self.left(i), self.right(i)
                 l, r = l if l < len(self) else i, r if r < len(self) else i # boundary check
@@ -84,11 +89,13 @@ class BinaryHeap(UserList):
 
         def extract_min(self):
                 """Remove and return the minimum element in the heap."""
+
                 min_elem = self[0]
                 # replace first element with last one
                 self[0] = self[-1]
                 self.pop()
-                self._trickle_down() # fixup
+                if len(self) > 0:
+                        self._trickle_down() # fixup
                 return min_elem
 
         def __repr__(self):
