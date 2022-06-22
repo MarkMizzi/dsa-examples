@@ -1,3 +1,5 @@
+"""Tests for sorts in dsa.sort."""
+
 import random
 import sys
 
