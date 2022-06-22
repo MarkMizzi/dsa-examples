@@ -1,6 +1,6 @@
 """Tests for dsa.heaps.binary_heap.BinaryHeap."""
 
-from random import randint
+import random
 
 from dsa.heaps.binary_heap import BinaryHeap
 
@@ -8,7 +8,7 @@ from dsa.heaps.binary_heap import BinaryHeap
 def random_heap(minimum: int, maximum: int, n: int):
     """Return a random heap with n elements in the range [minimum, maximum]."""
 
-    vals = [ randint(minimum, maximum) for _ in range(n) ]
+    vals = random.sample(range(minimum, maximum), n)
 
     x = BinaryHeap()
     for i in vals:
