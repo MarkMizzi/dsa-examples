@@ -13,8 +13,8 @@ def bubblesort(xs):
     passes = 0
     while swapped:
         swapped = False
-        for i, x in enumerate(xs[:-passes]):
-            if x > xs[i+1]:
+        for i in range(0, len(xs)-1-passes):
+            if xs[i] > xs[i+1]:
                 xs[i], xs[i+1] = xs[i+1], xs[i]
                 swapped = True
         passes += 1
