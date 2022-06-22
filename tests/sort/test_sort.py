@@ -54,7 +54,7 @@ def monkeypatch_pure_sort(sort):
     setattr(sys.modules[__name__], f'test_{sort.__name__}', test_sort)
 
 
-for inplace_sort in [ bubblesort, insertionsort, selectionsort ]:
+for inplace_sort in [ bubblesort, insertionsort, selectionsort, shellsort ]:
     monkeypatch_inplace_sort(inplace_sort)
 
 
